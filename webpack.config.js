@@ -7,7 +7,6 @@ module.exports = {
     },
     devServer: {
         port: 3010,
-        watchContentBase: true,
     },
     module: {
         rules: [
@@ -17,6 +16,13 @@ module.exports = {
                 use: {
                     loader: 'babel-loader'
                 }
+            },
+            {
+                test: /\.css$/i,
+                use: [
+                        "style-loader",
+                         "css-loader"
+                     ],
             }
         ]
     }
