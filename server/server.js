@@ -3,13 +3,14 @@ const app = express();
 const path = require('path');
 
 
-
 app.use(express.static(path.join(__dirname, '../public')))
-
-
 
 app.get('/', (req, res) => {
     res.send('test')
+})
+
+app.get('/upload', (req, res) => {
+    res.send('got it');
 })
 
 app.listen(3000, () => {
