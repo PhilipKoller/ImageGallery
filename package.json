@@ -3,9 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "type": "module",
   "scripts": {
-    "dev-serve": "webpack serve --mode development",
+    "dev-server": "webpack serve --mode development",
     "build": "webpack --mode production",
     "server-start": "nodemon server/server.js"
   },

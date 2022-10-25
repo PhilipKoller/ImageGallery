@@ -2,8 +2,8 @@ const path = require('path');
 
 module.exports = {
     output: {
-        path: path.join(__dirname, '/dist'),
-        filename: 'index.bundle.js'
+        path: path.join(__dirname, '/public'),
+        filename: 'bundle.js'
     },
     devServer: {
         port: 3010,
