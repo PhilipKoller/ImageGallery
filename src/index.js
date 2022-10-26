@@ -2,8 +2,8 @@ require('file-loader?name=[name].[ext]!./index.html');
 require('file-loader?name=[name].[ext]!../server/server.js');
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { App } from './App';
-import './App.css'
+import { App } from './components/App';
+import './components/App.js'
 
 
 
