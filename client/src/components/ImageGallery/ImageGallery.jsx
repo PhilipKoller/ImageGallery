@@ -1,16 +1,20 @@
 import React from "react";
 import axios from 'axios';
+import GalleryHeader from "./GalleryHeader.jsx";
+import GalleryBody from "./GalleryBody.jsx";
 
 const ImageGallery = () => {
 
     const form = document.getElementById('form');
 
-    const uploadImage = (e) => {
-
+    const handleImageUpload = (e) => {
         const form = document.getElementById('form');
         e.preventDefault();
         var formData = new FormData(form);
-        axios.post('/upload', formData);
+        axios.post('/upload', formData)
+            .then((res) => {
+                console.log(res);
+            })
         /*         formData.append('userName', "fred");
            
                 axios({
@@ -24,11 +28,11 @@ const ImageGallery = () => {
     }
 
     return (
-        <form id="form">
-            <label>Select Photo</label><br />
-            <input type="file" name="image" accept="image/*"></input>
-            <button type="submit" onClick={(e) => { uploadImage(e) }}>Submit</button>
-        </form>
+        <div>
+            <GalleryHeader handleImageUpload={handleImageUpload} />
+            <GalleryBody />
+        </div>
+
     )
 }
 

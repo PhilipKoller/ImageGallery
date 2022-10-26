@@ -28,12 +28,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
     res.send('got it');
 })
 
-app.post('/test', (req, res) => {
-    console.log(req.file)
-    res.send('got it from test');
-})
-
-
 app.listen(port, () => {
     console.log(`server running on port ${port}`)
 });
