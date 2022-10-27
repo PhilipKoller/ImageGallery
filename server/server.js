@@ -39,9 +39,8 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('image'), (req, res) => {
-
+/* 
     const promise = fs.promises.readFile(path.join('images/', req.file.originalname));
-
     Promise.resolve(promise)
         .then((buffer) => {
             const newImage = new ImageModel({
@@ -61,11 +60,12 @@ app.post('/upload', upload.single('image'), (req, res) => {
         })
         .catch((err) => {
             console.log(err);
-        })
-    /*    const newImage = new ImageModel({
+        }) */
+
+       const newImage = new ImageModel({
            name: req.file.originalname,
            image: {
-               data: fs.readFileSync('images/', req.file.filename),
+               data: fs.readFileSync(path.join('images/', req.file.filename)), //fs.readFile(path.join('images/', req.file.originalname))
                contentType: 'image/png'
            }
        })
@@ -75,7 +75,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
            })
            .catch((err) => {
                console.log(err)
-           }) */
+           })
 
 });
 
