@@ -63,5 +63,5 @@ app.get('/images', (req, res) => {
     });
 });
 app.listen(port, () => {
-    console.log(`server running on port ${port}`)
+    console.log(`server running at http://localhost:3000/${port}`)
 });
