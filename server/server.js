@@ -4,6 +4,7 @@ const cors = require('cors');
 const mongoose = require('mongoose');
 require('dotenv').config();
 const ImageModel = require('./image.model')
+const fs = require('fs');
 
 const app = express();
 const path = require('path');
@@ -24,31 +25,59 @@ mongoose.connect(process.env.DB)
         console.log('Error: ', error)
     })
 
-const upload = multer().single('image');
+const storage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        console.log(req.file)
+        cb(null, 'images')
+    },
+    filename: (req, file, cb) => {
+        cb(null, file.originalname)
+    }
+});
 
-app.post('/upload', (req, res) => {
-    upload(req, res, (err) => {
-        if (err) {
-            console.log(err);
-        }
-        else {
+
+const upload = multer({ storage: storage });
+
+app.post('/upload', upload.single('image'), (req, res) => {
+
+    const promise = fs.promises.readFile(path.join('images/', req.file.originalname));
+
+    Promise.resolve(promise)
+        .then((buffer) => {
             const newImage = new ImageModel({
                 name: req.file.originalname,
                 image: {
-                    data: req.file.originalname,
+                    data: buffer,
                     contentType: 'image/png'
                 }
             })
             newImage.save()
-            .then(() => {
-                res.send('uploaded')
-            })
-            .catch((err) => {
-                console.log(err)
-            })
-        }
-    })
-})
+                .then(() => {
+                    res.send('uploaded')
+                })
+                .catch((err) => {
+                    console.log(err)
+                })
+        })
+        .catch((err) => {
+            console.log(err);
+        })
+    /*    const newImage = new ImageModel({
+           name: req.file.originalname,
+           image: {
+               data: fs.readFileSync('images/', req.file.filename),
+               contentType: 'image/png'
+           }
+       })
+       newImage.save()
+           .then(() => {
+               res.send('uploaded')
+           })
+           .catch((err) => {
+               console.log(err)
+           }) */
+
+});
 
 
 app.get('/images', (req, res) => {
@@ -63,5 +92,5 @@ app.get('/images', (req, res) => {
     });
 });
 app.listen(port, () => {
-    console.log(`server running at http://localhost:3000/${port}`)
+    console.log(`server running at http://localhost:/${port}`)
 });
