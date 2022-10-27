@@ -13,10 +13,10 @@ const port = 3000;
 
 app.use(cors());
 app.use(express.json());
-app.use(urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-mongoose.connect(process.env.KEY)
+mongoose.connect(process.env.DB)
     .then(() => {
         console.log('mongo atlas connected')
     })
@@ -24,16 +24,7 @@ mongoose.connect(process.env.KEY)
         console.log('Error: ', error)
     })
 
-const storage = multer.diskStorage({
-    destination: "uploaded_images",
-    filename: (req, file, cb) => {
-        cb(null, file.originalname)
-    }
-})
-
-
-const upload = multer({storage: storage}).single('image');
-
+const upload = multer().single('image');
 
 app.post('/upload', (req, res) => {
     upload(req, res, (err) => {
@@ -42,9 +33,9 @@ app.post('/upload', (req, res) => {
         }
         else {
             const newImage = new ImageModel({
-                name: req.file.filename,
+                name: req.file.originalname,
                 image: {
-                    data: req.file.filename,
+                    data: req.file.originalname,
                     contentType: 'image/png'
                 }
             })
@@ -59,6 +50,18 @@ app.post('/upload', (req, res) => {
     })
 })
 
+
+app.get('/images', (req, res) => {
+    ImageModel.find({}, (err, items) => {
+        if (err) {
+            console.log(err);
+            res.status(500).send('An error occurred', err);
+        }
+        else {
+            res.send({ items: items });
+        }
+    });
+});
 app.listen(port, () => {
     console.log(`server running on port ${port}`)
 });
