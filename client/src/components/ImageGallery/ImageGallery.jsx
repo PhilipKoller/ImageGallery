@@ -11,6 +11,7 @@ const ImageGallery = () => {
         const form = document.getElementById('form');
         e.preventDefault();
         var formData = new FormData(form);
+        formData.append('image', document.getElementById('imageInput').value);
         axios.post('/upload', formData)
             .then((res) => {
                 console.log(res);
