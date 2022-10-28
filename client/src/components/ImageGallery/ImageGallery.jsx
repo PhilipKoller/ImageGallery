@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import GalleryHeader from "./GalleryHeader/GalleryHeader.jsx";
 import GalleryBody from "./GalleryBody.jsx";
@@ -8,10 +8,10 @@ const ImageGallery = () => {
 
     useEffect(() => {
         axios.get('/images')
-        .then((res) => {
-            setImages(res.data)
-        })
-    },[])
+            .then((res) => {
+                setImages(res.data)
+            })
+    }, [])
 
     const handleImageUpload = (e) => {
         const form = document.getElementById('form');
@@ -28,6 +28,8 @@ const ImageGallery = () => {
     }
 
     const handleSearch = (name) => {
+        axios.get(`/images:${name}`)
+        console.log(name);
         //TODO: get request /images:name
         //TODO: update state
     }

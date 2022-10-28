@@ -9,12 +9,9 @@ const Search = ({ handleSearch }) => {
     }
     return (
         <>
-            <input value={name} onChange={(e) => {
-                onChange(e);
-            }} onClick={() => {
-                handleSearch(name);
-            }}
+            <input value={name} onChange={(e) => {onChange(e)}} 
             />
+            <button onClick={() => { handleSearch(name) }}>Search</button>
         </>
 
     )
