@@ -1,9 +1,14 @@
 import React from 'react';
 
-const Image = () => {
+const Image = ({ imageBase64 }) => {
+
     return (
-        <img src="" alt="Girl in a jacket" width="500" height="600"></img>
+        <div>
+            <img src={`data:image/jpeg;base64,${imageBase64}`} alt="Girl in a jacket" width="500" height="600"></img>
+        </div>
     )
 }
 
 export default Image;
+
+

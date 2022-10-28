@@ -3,3 +3,5 @@ bundle.js
 package-lock.json
 dist
 .env
+myData.json
+images
