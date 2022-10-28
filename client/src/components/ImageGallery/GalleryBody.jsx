@@ -1,16 +1,13 @@
-import React from 'react';
-import Image from './Image.jsx';
+import React from 'react'
 const Buffer = require('buffer/').Buffer 
-
+import Image from './Image.jsx';
 
 const GalleryBody = ({ images }) => {
     return (
         images.map((imageData) => {
-            /*  <Image imageBuffer = {imageData.image.data.data} /> */
-            var buf = Buffer.from(imageData.image.data.data).toString('base64');
-            console.log(buf);
+            let imageBase64 = Buffer.from(imageData.image.data.data).toString('base64');
+            return <Image imageBase64={imageBase64} key={imageData._id} />
         })
-
     )
 }
 
