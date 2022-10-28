@@ -1,9 +1,22 @@
-import React from "react";
+import React, { useState } from "react";
 
 
-const Search = () => {
+const Search = ({ handleSearch }) => {
+    const [name, setName] = useState("");
+
+    const onChange = (e) => {
+        setName(e.target.value)
+    }
     return (
-        <div></div>
+        <>
+            <input value={name} onChange={(e) => {
+                onChange(e);
+            }} onClick={() => {
+                handleSearch(name);
+            }}
+            />
+        </>
+
     )
 }
 

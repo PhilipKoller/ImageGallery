@@ -27,10 +27,15 @@ const ImageGallery = () => {
             })
     }
 
+    const handleSearch = (name) => {
+        //TODO: get request /images:name
+        //TODO: update state
+    }
+
     return (
         <div>
-            <GalleryHeader handleImageUpload={handleImageUpload} />
-            <GalleryBody images={images}/>
+            <GalleryHeader handleImageUpload={handleImageUpload} handleSearch={handleSearch} />
+            <GalleryBody images={images} />
         </div>
 
     )

@@ -4,9 +4,12 @@ import Search from './Search.jsx';
 
 
 
-const GalleryHeader = ({handleImageUpload}) => {
+const GalleryHeader = ({ handleImageUpload, handleSearch }) => {
     return (
-       <Upload handleImageUpload={handleImageUpload}/>
+        <>
+            <Upload handleImageUpload={handleImageUpload} />
+            <Search handleSearch={handleSearch} />
+        </>
     )
 }
 
