@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from "react";
 import axios from 'axios';
-import GalleryHeader from "./GalleryHeader.jsx";
+import GalleryHeader from "./GalleryHeader/GalleryHeader.jsx";
 import GalleryBody from "./GalleryBody.jsx";
 
 const ImageGallery = () => {
@@ -9,7 +9,7 @@ const ImageGallery = () => {
     useEffect(() => {
         axios.get('/images')
         .then((res) => {
-            setImages(res.data.items)
+            setImages(res.data)
         })
     },[])
 
@@ -20,7 +20,7 @@ const ImageGallery = () => {
         formData.append('image', document.getElementById('imageInput').value);
         axios.post('/upload', formData)
             .then((res) => {
-                console.log(res);
+                setImages([...images, res.data])
             })
             .catch((err) => {
                 console.log(err);

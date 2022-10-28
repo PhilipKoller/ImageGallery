@@ -1,7 +1,6 @@
-import React from 'react';
+import React from "react";
 
-
-const GalleryHeader = ({handleImageUpload}) => {
+const Upload = ({handleImageUpload}) => {
     return (
         <form id="form">
             <label>Select Photo</label><br />
@@ -11,4 +10,4 @@ const GalleryHeader = ({handleImageUpload}) => {
     )
 }
 
-export default GalleryHeader;
+export default Upload;
