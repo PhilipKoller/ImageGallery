@@ -1,11 +1,17 @@
-import React from "react";
+import React, {useState, useEffect} from "react";
 import axios from 'axios';
 import GalleryHeader from "./GalleryHeader.jsx";
 import GalleryBody from "./GalleryBody.jsx";
 
 const ImageGallery = () => {
+    const [images, setImages] = useState([]);
 
-    const form = document.getElementById('form');
+    useEffect(() => {
+        axios.get('/images')
+        .then((res) => {
+            setImages(res.data.items)
+        })
+    },[])
 
     const handleImageUpload = (e) => {
         const form = document.getElementById('form');
@@ -16,22 +22,15 @@ const ImageGallery = () => {
             .then((res) => {
                 console.log(res);
             })
-        /*         formData.append('userName', "fred");
-           
-                axios({
-                   method: "post",
-                   url: "/test",
-                   data: formData,
-                   headers: { "Content-Type": "multipart/form-data"}
-                }).then((res) => {
-                   console.log('res', res)
-                }) */
+            .catch((err) => {
+                console.log(err);
+            })
     }
 
     return (
         <div>
             <GalleryHeader handleImageUpload={handleImageUpload} />
-            <GalleryBody />
+            <GalleryBody images={images}/>
         </div>
 
     )

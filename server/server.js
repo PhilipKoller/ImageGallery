@@ -13,9 +13,10 @@ const port = 3000;
 
 
 app.use(cors());
-app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, '../client/dist'))); // serve static files 
+app.use(express.json()); // accept json data incoming // allows for req.body 
+app.use(express.urlencoded({ extended: true })); // form data
+
 
 mongoose.connect(process.env.DB)
     .then(() => {
@@ -39,29 +40,6 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('image'), (req, res) => {
-/* 
-    const promise = fs.promises.readFile(path.join('images/', req.file.originalname));
-    Promise.resolve(promise)
-        .then((buffer) => {
-            const newImage = new ImageModel({
-                name: req.file.originalname,
-                image: {
-                    data: buffer,
-                    contentType: 'image/png'
-                }
-            })
-            newImage.save()
-                .then(() => {
-                    res.send('uploaded')
-                })
-                .catch((err) => {
-                    console.log(err)
-                })
-        })
-        .catch((err) => {
-            console.log(err);
-        }) */
-
        const newImage = new ImageModel({
            name: req.file.originalname,
            image: {

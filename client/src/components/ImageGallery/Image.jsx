@@ -1,9 +1,11 @@
 import React from 'react';
 
-const Image = () => {
+const Image = ({imageBuffer}) => {
     return (
-        <img src="" alt="Girl in a jacket" width="500" height="600"></img>
+        <img src={`data:image/jpeg;base64,`} alt="Girl in a jacket" width="500" height="600"></img>
     )
 }
 
 export default Image;
+
+
