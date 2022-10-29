@@ -1,10 +1,13 @@
 import React from "react";
+import Button from '@mui/material/Button';
 
 const Upload = ({ handleImageUpload }) => {
     return (
         <form id="form">
-            <label htmlFor="imageInput">Select Photo</label> <br/>
-            <input type="file" name="image" accept="image/*" id="imageInput" required="file" onChange={(e) => { handleImageUpload(e) }} />
+            <Button variant="contained" component="label" >
+                Upload
+                <input hidden accept="image/*" multiple type="file" name="image"  id="imageInput" onChange={(e) => { handleImageUpload(e) }} />
+            </Button>
         </form>
     )
 }
