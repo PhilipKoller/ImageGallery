@@ -47,12 +47,14 @@ const ImageGallery = () => {
             <div className="container">
                 <div className="image-gallery">
                     <div className="image-header">
-                    <GalleryHeader handleImageUpload={handleImageUpload} handleSearch={handleSearch} />
+                        <GalleryHeader handleImageUpload={handleImageUpload} handleSearch={handleSearch} />
                     </div>
-                    <GalleryBody images={images} />
-                    {
-                        searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage} /> : null
-                    }
+                    <div className="image-body">
+                        <GalleryBody images={images} />
+                        {
+                            searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage} /> : null
+                        }
+                    </div>
                 </div>
             </div>
         </>

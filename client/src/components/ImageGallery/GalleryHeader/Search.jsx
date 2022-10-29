@@ -1,17 +1,30 @@
 import React, { useState } from "react";
-
+import InputBase from '@mui/material/InputBase';
 
 const Search = ({ handleSearch }) => {
-    const [name, setName] = useState("");
+ //   const [name, setName] = useState("");
 
-    const onChange = (e) => {
+/*     const onChange = (e) => {
         setName(e.target.value)
+    } */
+
+    const enterPressed = (e) => {
+        let code = e.keyCode || e.which
+        if (code === 13) {
+            handleSearch(e.target.value)
+        }
     }
     return (
         <>
-            <input value={name} onChange={(e) => {onChange(e)}} 
+            <InputBase
+                placeholder="Search…"
+                inputProps={{ 'aria-label': 'search' }}
+                onKeyPress={(e) => { enterPressed(e) }}
+                className="input-header"
             />
-            <button onClick={() => { handleSearch(name) }}>Search</button>
+{/*             <input value={name} onChange={(e) => { onChange(e) }}
+            />
+            <button onClick={() => { handleSearch(name) }}>Search</button> */}
         </>
 
     )
