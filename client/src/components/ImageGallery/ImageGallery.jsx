@@ -2,9 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from 'axios';
 import GalleryHeader from "./GalleryHeader/GalleryHeader.jsx";
 import GalleryBody from "./GalleryBody.jsx";
+import DisplayModal from './DisplayModal/DisplayModal.jsx';
 
 const ImageGallery = () => {
     const [images, setImages] = useState([]);
+    //const [displayModal, setDisplayModal] = useState(false);
+    const [searchedImage, setSearchedImage] = useState();
 
     useEffect(() => {
         axios.get('/images')
@@ -28,19 +31,30 @@ const ImageGallery = () => {
     }
 
     const handleSearch = (name) => {
-        axios.get(`/images${name}`)
-        .then((res) => {
+        let response;
+         axios.get(`/images${name}`)
+          .then((res) => {
             console.log(res.data);
+            setSearchedImage(res.data);
         })
-        //TODO: get request /images:name
-        //TODO: update state
+        .catch((err) => {
+
+        })
+        //let imageBase64 = Buffer.from(res.data.image.data.data).toString('base64');
+
     }
 
+   // const handleModalOpen = () => setDisplayModal(true);
+    const handleSearchedImage = () => setSearchedImage([]);
+
     return (
-        <div>
+        <>
             <GalleryHeader handleImageUpload={handleImageUpload} handleSearch={handleSearch} />
             <GalleryBody images={images} />
-        </div>
+            {
+                searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage}/> : null
+            }
+        </>
 
     )
 }
