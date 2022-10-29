@@ -41,7 +41,7 @@ const upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('image'), (req, res) => {
        const newImage = new ImageModel({
-           name: req.file.originalname,
+           name: path.parse(req.file.originalname).name,
            image: {
                data: fs.readFileSync(path.join('images/', req.file.filename)), //fs.readFile(path.join('images/', req.file.originalname))
                contentType: 'image/png'
@@ -61,7 +61,6 @@ app.post('/upload', upload.single('image'), (req, res) => {
 app.get('/images', (req, res) => {
     ImageModel.find({}, (err, images) => {
         if (err) {
-            console.log(err);
             res.status(500).send('An error occurred', err);
         }
         else {
@@ -69,6 +68,17 @@ app.get('/images', (req, res) => {
         }
     });
 });
+
+app.get('/images:name', (req, res) => {
+    ImageModel.findOne({ name: req.params.name }, (err, image) => {
+        if (err) {
+            res.status(500).send(`Failed to fetch image: ${req.params.name}`, err)
+        } else {
+            res.send(image);
+        }
+    });
+});
+
 app.listen(port, () => {
     console.log(`server running at http://localhost:/${port}`)
 });

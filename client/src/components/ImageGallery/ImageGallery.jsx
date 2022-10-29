@@ -28,8 +28,10 @@ const ImageGallery = () => {
     }
 
     const handleSearch = (name) => {
-        axios.get(`/images:${name}`)
-        console.log(name);
+        axios.get(`/images${name}`)
+        .then((res) => {
+            console.log(res.data);
+        })
         //TODO: get request /images:name
         //TODO: update state
     }
