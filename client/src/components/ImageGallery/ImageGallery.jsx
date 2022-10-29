@@ -3,6 +3,7 @@ import axios from 'axios';
 import GalleryHeader from "./GalleryHeader/GalleryHeader.jsx";
 import GalleryBody from "./GalleryBody.jsx";
 import DisplayModal from './DisplayModal/DisplayModal.jsx';
+import '../../App.css'
 
 const ImageGallery = () => {
     const [images, setImages] = useState([]);
@@ -31,29 +32,29 @@ const ImageGallery = () => {
     }
 
     const handleSearch = (name) => {
-        let response;
-         axios.get(`/images${name}`)
-          .then((res) => {
-            console.log(res.data);
-            setSearchedImage(res.data);
-        })
-        .catch((err) => {
-
-        })
-        //let imageBase64 = Buffer.from(res.data.image.data.data).toString('base64');
-
+        // look through state to find image
+        for (let image of images) {
+            if (image.name === name) {
+                setSearchedImage(image);
+                return;
+            }
+        }
+        alert(`image: ${name} not found`)
     }
-
-   // const handleModalOpen = () => setDisplayModal(true);
-    const handleSearchedImage = () => setSearchedImage([]);
 
     return (
         <>
-            <GalleryHeader handleImageUpload={handleImageUpload} handleSearch={handleSearch} />
-            <GalleryBody images={images} />
-            {
-                searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage}/> : null
-            }
+            <div className="container">
+                <div className="image-gallery">
+                    <div className="image-header">
+                    <GalleryHeader handleImageUpload={handleImageUpload} handleSearch={handleSearch} />
+                    </div>
+                    <GalleryBody images={images} />
+                    {
+                        searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage} /> : null
+                    }
+                </div>
+            </div>
         </>
 
     )

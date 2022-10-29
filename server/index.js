@@ -40,20 +40,20 @@ const storage = multer.diskStorage({
 const upload = multer({ storage: storage });
 
 app.post('/upload', upload.single('image'), (req, res) => {
-       const newImage = new ImageModel({
-           name: path.parse(req.file.originalname).name,
-           image: {
-               data: fs.readFileSync(path.join('images/', req.file.filename)), //fs.readFile(path.join('images/', req.file.originalname))
-               contentType: 'image/png'
-           }
-       })
-       newImage.save()
-           .then(() => {
-               res.send(newImage)
-           })
-           .catch((err) => {
-               console.log(err)
-           })
+    const newImage = new ImageModel({
+        name: path.parse(req.file.originalname).name,
+        image: {
+            data: fs.readFileSync(path.join('images/', req.file.filename)), //fs.readFile(path.join('images/', req.file.originalname))
+            contentType: 'image/png'
+        }
+    })
+    newImage.save()
+        .then(() => {
+            res.send(newImage)
+        })
+        .catch((err) => {
+            res.status(500).send('An error occurred: ', err)
+        })
 
 });
 
@@ -61,7 +61,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
 app.get('/images', (req, res) => {
     ImageModel.find({}, (err, images) => {
         if (err) {
-            res.status(500).send('An error occurred', err);
+            res.status(500).send('An error occurred: ', err);
         }
         else {
             res.send(images);
