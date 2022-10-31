@@ -1,4 +1,6 @@
+
 # ImageGallery
+![demo](https://user-images.githubusercontent.com/68295732/199070395-390d60bd-0f62-4940-961d-06d7c4ac7b41.gif)
 
 ## Install Packages:
 ```npm install```
