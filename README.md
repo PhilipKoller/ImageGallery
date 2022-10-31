@@ -12,7 +12,7 @@
 ```npm run build```
 
 ## Create .env file in ImageGallery/
-paste the DB and PORT into the file and save.
+paste the DB string and PORT number into the file and save.
 
 ## start server 
 run npm server-start
