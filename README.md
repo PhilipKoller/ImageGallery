@@ -11,7 +11,8 @@
 ## Build Webpack
 ```npm run build```
 
-## Create .env file in ImageGallery/
+## Create .env 
+Create a .env file in ImageGallery/
 paste the DB string and PORT number into the file and save.
 
 ## Start server 
