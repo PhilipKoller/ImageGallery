@@ -76,6 +76,6 @@ app.get('/images:name', (req, res) => {
     });
 });
 
-app.listen(process.env.DB, () => {
-    console.log(`server running at http://localhost:${process.env.DB}`)
+app.listen(process.env.PORT, () => {
+    console.log(`server running at http://localhost:${process.env.PORT}`)
 });
