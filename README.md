@@ -14,8 +14,8 @@
 ## Create .env file in ImageGallery/
 paste the DB string and PORT number into the file and save.
 
-## start server 
-run npm server-start
+## Start server 
+run ```npm server-start```
 
 ## navigate to 
  http://localhost:[ port number]
