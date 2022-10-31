@@ -6,14 +6,10 @@
 ## Build Webpack
 ```npm run build```
 
-## Create .env and images folder
+## Create .env
 Create a .env file in ImageGallery/
 
 paste the DB string and PORT number into the file and save.
-
-Create a folder called images in ImageGallery/
-
-
 
 ## Start server 
 ```npm run server-start```
