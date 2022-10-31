@@ -6,8 +6,10 @@
 ## Build Webpack
 ```npm run build```
 
-## Create .env 
+## Create .env and images folder
 Create a .env file in ImageGallery/
+
+Create a folder called images in ImageGallery
 
 paste the DB string and PORT number into the file and save.
 
