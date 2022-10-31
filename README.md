@@ -18,7 +18,8 @@ paste the DB string and PORT number into the file and save.
  http://localhost:[port]
 
 ## Overview 
-for a detailed overview of the application checkout the .excalidraw file 
+For a detailed overview of the application checkout the .excalidraw file 
 located in the root directory of the project folder
 
-to view in vs Code make sure to add the Excalidraw extension 
+To view in vs Code make sure to add the Excalidraw extension 
+or load file into https://excalidraw.com/
