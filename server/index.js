@@ -8,7 +8,6 @@ require('dotenv').config();
 
 const app = express();
 const path = require('path');
-const port = 3000;
 
 
 app.use(cors());
@@ -77,6 +76,6 @@ app.get('/images:name', (req, res) => {
     });
 });
 
-app.listen(port, () => {
-    console.log(`server running at http://localhost:/${port}`)
+app.listen(process.env.DB, () => {
+    console.log(`server running at http://localhost:${process.env.DB}`)
 });
