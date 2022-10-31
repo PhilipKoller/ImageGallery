@@ -40,6 +40,17 @@ const ImageGallery = () => {
             }
         }
         alert(`image: ${name} not found`)
+        
+         // Query Database to get Image
+        /* 
+           axios.get(`/images${name}`)
+            .then((res) => { 
+                setSearchedImage(res.data);
+             })
+             .catch((err) => {
+                alert(`an error has occured: ${err}`)
+            }) 
+        */
     }
 
     return (
