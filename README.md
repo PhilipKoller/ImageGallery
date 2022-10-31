@@ -15,7 +15,7 @@
 paste the DB string and PORT number into the file and save.
 
 ## Start server 
-run ```npm server-start```
+```npm server-start```
 
 ## navigate to 
  http://localhost:[ port number]
