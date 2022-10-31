@@ -7,7 +7,6 @@ import '../../App.css'
 
 const ImageGallery = () => {
     const [images, setImages] = useState([]);
-    //const [displayModal, setDisplayModal] = useState(false);
     const [searchedImage, setSearchedImage] = useState();
 
     useEffect(() => {
@@ -20,7 +19,7 @@ const ImageGallery = () => {
     const handleImageUpload = (e) => {
         const form = document.getElementById('form');
         e.preventDefault();
-        var formData = new FormData(form);
+        let formData = new FormData(form);
         formData.append('image', document.getElementById('imageInput').value);
         axios.post('/upload', formData)
             .then((res) => {
@@ -34,6 +33,7 @@ const ImageGallery = () => {
     const handleSearch = (name) => {
         // look through state to find image
         for (let image of images) {
+            image.name.length > 20 ? image.name = image.name.slice(0,20) : null
             if (image.name === name) {
                 setSearchedImage(image);
                 return;
@@ -47,12 +47,14 @@ const ImageGallery = () => {
             <div className="container">
                 <div className="image-gallery">
                     <div className="image-header">
-                    <GalleryHeader handleImageUpload={handleImageUpload} handleSearch={handleSearch} />
+                        <GalleryHeader handleImageUpload={handleImageUpload} handleSearch={handleSearch} />
                     </div>
-                    <GalleryBody images={images} />
-                    {
-                        searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage} /> : null
-                    }
+                    <div className="image-body">
+                        <GalleryBody images={images} />
+                        {
+                            searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage} /> : null
+                        }
+                    </div>
                 </div>
             </div>
         </>

@@ -24,7 +24,7 @@ const BasicModal = ({ setSearchedImage, imageData }) => {
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <Box sx={style}>
+        <Box sx={style} id="modal-box">
           <Typography id="modal-modal-title" variant="h6" component="h2">
             {imageData.name}
           </Typography>

@@ -8,14 +8,14 @@ require('dotenv').config();
 
 const app = express();
 const path = require('path');
-//const { urlencoded } = require('express');
 const port = 3000;
 
 
 app.use(cors());
-app.use(express.static(path.join(__dirname, '../client/dist'))); // serve static files 
-app.use(express.json()); // accept json data incoming // allows for req.body 
-app.use(express.urlencoded({ extended: true })); // form data
+// Serve static files
+app.use(express.static(path.join(__dirname, '../client/dist')));  
+app.use(express.json());
+app.use(express.urlencoded({ extended: true })); 
 
 
 mongoose.connect(process.env.DB)
@@ -26,6 +26,7 @@ mongoose.connect(process.env.DB)
         console.log('Error: ', error)
     })
 
+// Save image locally 
 const storage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, 'images')
@@ -33,17 +34,16 @@ const storage = multer.diskStorage({
     filename: (req, file, cb) => {
         cb(null, file.originalname)
     }
-});
-
-
+})
 
 const upload = multer({ storage: storage });
 
+// Save Image locally(Multer) => Query DB => rend response to client
 app.post('/upload', upload.single('image'), (req, res) => {
     const newImage = new ImageModel({
         name: path.parse(req.file.originalname).name,
         image: {
-            data: fs.readFileSync(path.join('images/', req.file.filename)), //fs.readFile(path.join('images/', req.file.originalname))
+            data: fs.readFileSync(path.join('images/', req.file.filename)), 
             contentType: 'image/png'
         }
     })
@@ -54,9 +54,7 @@ app.post('/upload', upload.single('image'), (req, res) => {
         .catch((err) => {
             res.status(500).send('An error occurred: ', err)
         })
-
 });
-
 
 app.get('/images', (req, res) => {
     ImageModel.find({}, (err, images) => {
