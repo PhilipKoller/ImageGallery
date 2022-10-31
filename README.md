@@ -6,13 +6,13 @@
 
 
 ## Install Packages:
-run ```npm install```
+```npm install```
 
 ## Build Webpack
-run ```npm run build```
+```npm run build```
 
 ## Create .env file in ImageGallery/
-Pase the DB and PORT into the file and save.
+paste the DB and PORT into the file and save.
 
 ## start server 
 run npm server-start
