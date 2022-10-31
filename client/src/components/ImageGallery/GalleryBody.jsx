@@ -7,7 +7,7 @@ const Buffer = require('buffer/').Buffer
 
 const GalleryBody = ({ images }) => {
     return (
-        <ImageList sx={{ width: 700, height: 650 }} className="image-list">
+        <ImageList sx={{ width: 700, height: 650 }}>
             {images.map((imageData) => {
                 // Convert to base64 
                 let imageBase64 = Buffer.from(imageData.image.data.data).toString('base64');

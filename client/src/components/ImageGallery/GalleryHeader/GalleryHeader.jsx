@@ -8,7 +8,6 @@ const GalleryHeader = ({ handleImageUpload, handleSearch }) => {
             <Upload handleImageUpload={handleImageUpload} />
             <Search handleSearch={handleSearch} />
         </>
-
     )
 }
 
