@@ -1,10 +1,5 @@
 # ImageGallery
 
-
-![gamescollective](https://user-images.githubusercontent.com/97041979/177774974-72f06ebd-7f0e-4300-9aa4-477955807416.gif)
-
-
-
 ## Install Packages:
 ```npm install```
 
@@ -22,3 +17,9 @@ paste the DB string and PORT number into the file and save.
 ## Navigate to 
  http://localhost:[port]
 
+## Overview 
+For a detailed overview of the application checkout the .excalidraw file 
+located in the root directory of the project folder
+
+To view in vs Code make sure to add the Excalidraw extension 
+or load file into https://excalidraw.com/
