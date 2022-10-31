@@ -18,5 +18,5 @@ paste the DB string and PORT number into the file and save.
 ```npm server-start```
 
 ## Navigate to 
- http://localhost:[port number]
+ http://localhost:[port]
 
