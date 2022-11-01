@@ -53,6 +53,10 @@ const ImageGallery = () => {
         */
     }
 
+    const handleDelete = (imageData) => {
+        axios.delete(`/images${imageData._id}`, )
+    }
+
     return (
         <>
             <div className="container">
@@ -63,7 +67,7 @@ const ImageGallery = () => {
                     <div className="image-body">
                         <GalleryBody images={images} />
                         {
-                            searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage} /> : null
+                            searchedImage ? <DisplayModal setSearchedImage={setSearchedImage} imageData={searchedImage} handleDelete={handleDelete}/> : null
                         }
                     </div>
                 </div>

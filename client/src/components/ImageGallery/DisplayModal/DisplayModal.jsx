@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Typography from '@mui/material/Typography';
 import Modal from '@mui/material/Modal';
 import Image from './Image.jsx';
+import ModalFooter from './ModalFooter.jsx';
 
 const style = {
   position: 'absolute',
@@ -15,7 +16,7 @@ const style = {
   p: 4,
 };
 
-const BasicModal = ({ setSearchedImage, imageData }) => {
+const BasicModal = ({ setSearchedImage, imageData, handleDelete }) => {
   return (
     <div>
       <Modal
@@ -29,6 +30,7 @@ const BasicModal = ({ setSearchedImage, imageData }) => {
             {imageData.name}
           </Typography>
           <Image imageData={imageData} />
+          <ModalFooter imageData={imageData} handleDelete={handleDelete}/>
         </Box>
       </Modal>
     </div>

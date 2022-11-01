@@ -5,10 +5,10 @@ import DeleteIcon from '@mui/icons-material/Delete';
 
 
 
-const ModalFooter = () => {
+const ModalFooter = ({imageData, handleDelete}) => {
     return (
             <Stack direction="row" spacing={1} justifyContent="center">
-                <IconButton aria-label="delete" size="large" onClick={()=> {alert("you clicked delete")}}>
+                <IconButton aria-label="delete" size="large" onClick={()=> {handleDelete(imageData)}}>
                     <DeleteIcon fontSize="inherit"/>
                 </IconButton>
             </Stack>
