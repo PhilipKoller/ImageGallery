@@ -65,7 +65,7 @@ app.get('/images', (req, res) => {
     });
 });
 
-app.get('/images:name', (req, res) => {
+app.get('/image:name', (req, res) => {
     ImageModel.findOne({ name: req.params.name }, (err, image) => {
         if (err) {
             res.status(500).send(`Failed to fetch image: ${req.params.name}`, err)
@@ -74,6 +74,16 @@ app.get('/images:name', (req, res) => {
         }
     });
 });
+
+app.delete('/image:_id', (req, res) => {
+    ImageModel.findOneAndDelete(req.params._id, (err, deletedRecord) => {
+        if(err) {
+            res.send(err);
+        } else {
+            res.send(deletedRecord)
+        }
+    })
+})
 
 app.listen(process.env.PORT, () => {
     console.log(`server running at http://localhost:${process.env.PORT}`)

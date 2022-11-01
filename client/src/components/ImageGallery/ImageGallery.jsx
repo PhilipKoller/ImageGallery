@@ -43,7 +43,7 @@ const ImageGallery = () => {
         
          // Query Database to get Image
         /* 
-           axios.get(`/images${name}`)
+           axios.get(`/image${name}`)
             .then((res) => { 
                 setSearchedImage(res.data);
              })
@@ -54,7 +54,14 @@ const ImageGallery = () => {
     }
 
     const handleDelete = (imageData) => {
-        axios.delete(`/images${imageData._id}`, )
+         axios.delete(`/image${imageData._id}`, )
+        .then((res) => {
+            console.log(res.data)
+            //TODO: Update state to reflect delete image 
+        })
+        .catch((err) => {
+            console.log(err);
+        }) 
     }
 
     return (
